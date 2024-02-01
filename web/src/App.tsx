@@ -1,7 +1,12 @@
 import './App.scss';
+import Suggestions from './routes/Suggestions';
 
 function App() {
-	return <></>;
+	return (
+		<>
+			<Suggestions />
+		</>
+	);
 }
 
 export default App;

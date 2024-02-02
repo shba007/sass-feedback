@@ -1,49 +1,18 @@
-.category-option {
-	margin: 2px 0;
-	border-radius: 10px;
-	padding: 0.3125rem 1rem;
-	width: fit-content;
-	height: fit-content;
-	color: var(--primary-500);
-	font-size: 13px;
-	font-weight: 600;
-	letter-spacing: 0.25px;
-	text-transform: capitalize;
-	background-color: var(--light-500);
-}
-
-.category-option:hover {
-	color: var(--light-white);
-	background-color: var(--primary-500);
-}
-
-.category-option.active {
-	color: var(--light-white);
-	background-color: var(--primary-500);
-}
-
-.add-feedback-btn {
-	border-radius: 10px;
-	padding: 0.75rem 1.5rem;
-	font-size: 14px;
-	font-weight: 700;
-	color: var(--light-white);
-	background-color: var(--secondary-500);
-}
-
-main {
+main#suggestion {
 	position: relative;
 	display: flex;
-	margin: 0 auto;
-	width: fit-content;
 	gap: 30px;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 69.375rem;
 	height: 100vh;
 
 	aside {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		width: 255px;
+		// FIXME:
+		max-width: 15.9375rem;
 
 		.title-board {
 			display: flex;
@@ -102,24 +71,6 @@ main {
 				text-decoration: underline;
 			}
 
-			.status {
-				display: flex;
-				align-items: center;
-				gap: 16px;
-
-				.indicator {
-					border-radius: 50%;
-					width: 0.5rem;
-					height: fit-content;
-					aspect-ratio: 1;
-					background-color: var(--status-planned);
-				}
-
-				.label {
-					text-transform: capitalize;
-				}
-			}
-
 			.count {
 				justify-self: flex-end;
 				font-weight: 700;
@@ -132,28 +83,7 @@ main {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		width: 825px;
 		height: 100%;
-
-		.action-bar {
-			display: flex;
-			align-items: center;
-			gap: 38px;
-			padding: 0.875rem 0.875rem 0.875rem 1.5rem;
-			border-radius: 10px;
-			color: var(--light-white);
-			background-color: var(--dark-400);
-
-			h1 {
-				font-size: 18px;
-				font-weight: 700;
-				letter-spacing: 1px;
-			}
-
-			.add-feedback-btn {
-				margin: 0 0 0 auto;
-			}
-		}
 
 		.empty-state {
 			display: flex;
@@ -175,52 +105,12 @@ main {
 			}
 		}
 
-		.requests {
+		.feedbacks {
 			display: flex;
 			flex-direction: column;
 			gap: 24px;
 			height: 100%;
 			overflow-y: scroll;
-
-			.request {
-				display: flex;
-				gap: 40px;
-				border-radius: 10px;
-				padding: 1.75rem 2rem;
-				background-color: var(--light-white);
-
-				.vote-count {
-					width: fit-content;
-					height: fit-content;
-					color: var(--dark-300);
-					font-size: 13px;
-					font-weight: 700;
-					padding: 0.5rem;
-					border-radius: 10px;
-					background-color: var(--light-500);
-				}
-
-				.content {
-					flex: 1;
-					h1 {
-						font-size: 18px;
-						font-weight: 700;
-						color: var(--dark-300);
-					}
-
-					p {
-						padding: 0.25rem 0 0.75rem 0;
-						color: var(--dark-500);
-					}
-				}
-
-				.comment-count {
-					align-self: center;
-					justify-self: flex-end;
-					font-weight: 700;
-					color: var(--dark-300);
-				}
-			}
 		}
 	}
 }

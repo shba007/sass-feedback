@@ -1,30 +1,26 @@
-import { useState } from 'react';
-import Feedback from '../components/Feedback';
 import ActionBar from '../components/ActionBar';
+import RoadmapCard from '../components/RoadmapCard';
+import './Roadmap.scss';
 
-import './Suggestions.scss';
-import StatusIndicator from '../components/StatusIndicator';
-
-function Suggestions() {
-	const tags = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
-	const [activeTagIndex, setActiveTagIndex] = useState(0);
-
-	const status = [
+function Roadmap() {
+	const headings = [
 		{
-			type: 'planned',
+			title: 'Planned',
+			details: 'Ideas prioritized for research',
 			count: 2,
 		},
 		{
-			type: 'in-progress',
+			title: 'In-Progress',
+			details: 'Currently being developed',
 			count: 3,
 		},
 		{
-			type: 'live',
+			title: 'Live',
+			details: 'Released features',
 			count: 1,
 		},
-	] as const;
-
-	const requests = [
+	];
+	const roadmapItems = [
 		{
 			id: 1,
 			title: 'Add tags for solutions',
@@ -331,45 +327,25 @@ function Suggestions() {
 	];
 
 	return (
-		<main id="suggestion">
-			<aside>
-				<div className="title-board">
-					<h2>Eqaim</h2>
-					<h3>Feedback Board</h3>
-				</div>
-				<div className="category-board">
-					{tags.map((tag, index) => (
-						<button className={`category-option ${index == activeTagIndex ? 'active' : ''}`} onClick={() => setActiveTagIndex(index)}>
-							{tag}
-						</button>
-					))}
-				</div>
-				<div className="roadmap-board">
-					<h2>Roadmap</h2>
-					<a>View</a>
-					{status.map(({ type, count }) => (
-						<StatusIndicator key={type} type={type} count={count} />
-					))}
-				</div>
-			</aside>
-			<section>
-				<ActionBar page="suggestion" />
-				{!requests.length ? (
-					<div className="empty-state">
-						<h1>There is no feedback yet.</h1>
-						<p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
-						<button className="add-feedback-btn">Add Feedback</button>
+		<main id="roadmap">
+			<ActionBar page="roadmap" />
+			<div className="board">
+				{headings.map(({ title, details, count }, index) => (
+					<div className="head" style={{ gridColumnStart: index + 1 }}>
+						<h2>
+							{title} ({count})
+						</h2>
+						<span>{details}</span>
 					</div>
-				) : (
-					<div className="requests">
-						{requests.map(({ title, description, category, upvotes, comments }) => (
-							<Feedback title={title} description={description} category={category} upvotes={upvotes} commentCount={comments?.length ?? 0} />
-						))}
-					</div>
-				)}
-			</section>
+				))}
+				{roadmapItems
+					.filter(({ status }) => status !== 'suggestion')
+					.map(({ status, title, description, category, upvotes, comments }) => (
+						<RoadmapCard status={status} title={title} description={description} category={category} upvotes={upvotes} commentCount={comments?.length ?? 0} />
+					))}
+			</div>
 		</main>
 	);
 }
 
-export default Suggestions;
+export default Roadmap;

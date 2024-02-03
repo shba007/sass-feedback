@@ -19,7 +19,7 @@ function ActionBar({ page, suggestionCount }: { page: 'suggestion' | 'roadmap'; 
 					<h2>Roadmap</h2>
 				</>
 			)}
-			<CTAButton to="/feedback" type="secondary" label="Add Feedback" />
+			<CTAButton to="/feedback" type="primary" label="Add Feedback" />
 		</div>
 	);
 }

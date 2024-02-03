@@ -1,29 +1,56 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import CTAButton from '../components/CTAButton';
 import TextField from '../components/Form/TextField';
 import './Feedback.scss';
 import { Feedback as FeedbackType } from '../components/FeedbackCard';
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
+import { FormEvent } from 'react';
 
 function Feedback() {
+	const navigate = useNavigate();
 	const { id } = useParams();
-
 	const isEdit = Boolean(id !== undefined);
 
 	const { data: feedback } = useQuery({
 		queryFn: async () => {
+			if (!isEdit) return;
+
 			const { data } = await axios.get(`http://localhost:3000/feedback/${id}`);
 			return data as FeedbackType;
 		},
 	});
+
+	const mutation = useMutation({
+		mutationFn: async (formData) => {
+			const { data } = await (!isEdit
+				? axios.post(`http://localhost:3000/feedback`, formData)
+				: axios.put(`http://localhost:3000/feedback/${id}`, formData));
+			return data as FeedbackType;
+		},
+	});
+
+	function onSubmit(event: FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+
+		const formData: any = {};
+
+		const data = new FormData(event.currentTarget);
+		for (let [key, value] of data.entries()) {
+			formData[key.split('-')[1]] = value;
+		}
+		console.log(data);
+		mutation.mutate(formData);
+
+		navigate('/');
+	}
 
 	return (
 		<main id="feedback">
 			<section className="action-bar">
 				<Link to="/">Go Back</Link>
 			</section>
-			<form>
+			<form onSubmit={onSubmit}>
 				<div className="logo">{!isEdit ? 'plus' : 'pen'}</div>
 				<h1>{!isEdit ? 'Create New Feedback' : `Editing ‘${feedback?.title}’`}</h1>
 				<div className="input-block">
@@ -50,7 +77,7 @@ function Feedback() {
 				</div>
 				<div className="buttons">
 					{isEdit && <CTAButton type="danger" label="Delete" />}
-					<CTAButton type="neutral" label="Cancel" />
+					<CTAButton to="/" type="neutral" label="Cancel" />
 					<CTAButton type="primary" label="Add Feedback" />
 				</div>
 			</form>

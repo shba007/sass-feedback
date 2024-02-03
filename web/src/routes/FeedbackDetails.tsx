@@ -34,8 +34,6 @@ function FeedbackDetails() {
 		},
 	});
 
-	console.log('This is FeedbackDetails', { id });
-
 	return (
 		<main id="feedback-details">
 			<section className="action-bar">

@@ -1,3 +1,7 @@
+$small: 320px;
+$medium: 640px;
+$large: 1024px;
+
 .action-bar {
 	display: flex;
 	align-items: center;
@@ -10,9 +14,14 @@
 	background-color: var(--dark-400);
 
 	h1 {
+		display: none;
 		font-size: 18px;
 		font-weight: 700;
 		letter-spacing: 1px;
+
+		@media screen and (min-width: $medium) {
+			display: block;
+		}
 	}
 
 	.cta-button {

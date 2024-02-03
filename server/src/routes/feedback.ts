@@ -27,9 +27,23 @@ interface DetailedFeedback extends Omit<Feedback, 'commentCount'> {
 	comments: Comment[]
 }
 
+router.get('/info', (req, res) => {
+	const data = req.app.locals.data as Data[];
+
+	const statusCount = data.reduce((acc, { status }) => {
+		if (acc[status]) acc[status] += 1;
+		else acc[status] = 1;
+
+		return acc;
+	}, {} as any);
+
+	res.json(statusCount)
+})
+
 // Get all Feedback
 router.get('/', (req, res: Response<Array<Feedback>>) => {
 	const data = req.app.locals.data as Data[];
+	const { status: feedbackStatus } = req.query
 
 	const result = data.map(({ id, status, title, description, category, upvotes, comments }) => ({
 		id,
@@ -39,7 +53,7 @@ router.get('/', (req, res: Response<Array<Feedback>>) => {
 		category,
 		upvotes,
 		commentCount: comments?.length ?? 0,
-	}))
+	})).filter(({ status }) => feedbackStatus === undefined ? true : feedbackStatus === status)
 
 	res.json(result)
 })
@@ -48,7 +62,6 @@ router.get('/', (req, res: Response<Array<Feedback>>) => {
 router.get('/:id', (req, res: Response<DetailedFeedback | Error>) => {
 	const data = req.app.locals.data as Data[];
 	const feedbackId = parseInt(req.params.id)
-
 
 	const result = data.find(({ id }) => id === feedbackId)
 	if (result === undefined) {
@@ -77,7 +90,7 @@ router.post('/', (req, res: Response<Feedback>) => {
 		title,
 		description,
 		category,
-		status: 'planned',
+		status: 'suggestion',
 		upvotes: 0,
 	}
 

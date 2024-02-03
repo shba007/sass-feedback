@@ -5,6 +5,7 @@
 	font-weight: 700;
 	color: var(--light-white);
 	background-color: var(--secondary-500);
+	white-space: nowrap;
 
 	&.secondary {
 		background-color: var(--primary-500);

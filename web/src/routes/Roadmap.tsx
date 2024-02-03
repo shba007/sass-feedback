@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
+
+import './Roadmap.scss';
 import ActionBar from '../components/ActionBar';
 import RoadmapCard from '../components/RoadmapCard';
-import './Roadmap.scss';
 import { Feedback } from '../components/FeedbackCard';
+import { useState, useEffect } from 'react';
 
 function Roadmap() {
 	const headings = [
@@ -32,6 +34,21 @@ function Roadmap() {
 		},
 	});
 
+	const [screenSm, setScreenSm] = useState(false);
+
+	const handleResize = () => {
+		if (window.innerWidth < 640) {
+			setScreenSm(true);
+		} else {
+			setScreenSm(false);
+		}
+	};
+
+	useEffect(() => {
+		handleResize();
+		window.addEventListener('resize', handleResize);
+	});
+
 	return (
 		<main id="roadmap">
 			<ActionBar page="roadmap" />
@@ -41,7 +58,7 @@ function Roadmap() {
 						<h2>
 							{title} ({count})
 						</h2>
-						<span>{details}</span>
+						{!screenSm && <span>{details}</span>}
 					</div>
 				))}
 				{roadmapItems &&

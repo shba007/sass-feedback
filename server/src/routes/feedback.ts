@@ -4,7 +4,7 @@ import { Data, Error } from "../main";
 const router = express.Router()
 
 interface Feedback {
-	id: string;
+	id: number;
 	status: string;
 	title: string;
 	description: string;
@@ -13,8 +13,18 @@ interface Feedback {
 	commentCount: number;
 }
 
-interface DetailedFeedback extends Feedback {
+export interface Comment {
+	id: number;
+	content: string;
+	user: {
+		image: string;
+		name: string;
+		username: string;
+	};
+}
 
+interface DetailedFeedback extends Omit<Feedback, 'commentCount'> {
+	comments: Comment[]
 }
 
 // Get all Feedback
@@ -22,7 +32,7 @@ router.get('/', (req, res: Response<Array<Feedback>>) => {
 	const data = req.app.locals.data as Data[];
 
 	const result = data.map(({ id, status, title, description, category, upvotes, comments }) => ({
-		id: `${id}`,
+		id,
 		status,
 		title,
 		description,
@@ -37,9 +47,10 @@ router.get('/', (req, res: Response<Array<Feedback>>) => {
 // Get a Feedback
 router.get('/:id', (req, res: Response<DetailedFeedback | Error>) => {
 	const data = req.app.locals.data as Data[];
-	const { id: feedbackId } = req.params
+	const feedbackId = parseInt(req.params.id)
 
-	const result = data.find(({ id }) => feedbackId === `${id}`)
+
+	const result = data.find(({ id }) => id === feedbackId)
 	if (result === undefined) {
 		res.status(404).json({ code: 404, message: `Feedback id ${feedbackId} not found` })
 		return
@@ -52,7 +63,7 @@ router.get('/:id', (req, res: Response<DetailedFeedback | Error>) => {
 		description: result?.description,
 		category: result?.category,
 		upvotes: result?.upvotes,
-		commentCount: result?.comments?.length ?? 0,
+		comments: result.comments
 	})
 })
 
@@ -62,7 +73,7 @@ router.post('/', (req, res: Response<Feedback>) => {
 	const { title, description, category } = req.body
 
 	const feedback: Omit<Feedback, 'commentCount'> = {
-		id: `${data.length + 1}`,
+		id: data.length + 1,
 		title,
 		description,
 		category,
@@ -72,7 +83,6 @@ router.post('/', (req, res: Response<Feedback>) => {
 
 	data.push({
 		...feedback,
-		id: data.length + 1,
 		comments: []
 	})
 

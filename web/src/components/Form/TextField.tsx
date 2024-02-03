@@ -1,10 +1,10 @@
 import './TextField.scss';
 
-function TextField({ inline = true, name, placeholder = '' }: { inline?: boolean; name: string; placeholder?: string }) {
+function TextField({ inline = true, name, placeholder = '', value }: { inline?: boolean; name: string; placeholder?: string; value?: string }) {
 	return inline ? (
-		<input name={name} className="text-field" placeholder={placeholder} />
+		<input name={name} className="text-field" placeholder={placeholder} value={value} />
 	) : (
-		<textarea name={name} className="text-field" placeholder={placeholder} />
+		<textarea name={name} className="text-field" placeholder={placeholder} value={value} />
 	);
 }
 

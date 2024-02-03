@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import './RoadmapCard.scss';
 import StatusIndicator, { Status } from './StatusIndicator';
 
 export interface RoadmapItem {
+	id: number;
 	status: Status;
 	title: string;
 	description: string;
@@ -24,7 +26,7 @@ const columStart = {
 	suggestion: 4,
 };
 
-function RoadmapCard({ status, title, description, category, upvotes, commentCount }: RoadmapItem) {
+function RoadmapCard({ id, status, title, description, category, upvotes, commentCount }: RoadmapItem) {
 	return (
 		<div className="card" style={{ gridColumnStart: columStart[status] }}>
 			<div className="bar" style={{ backgroundColor: statusColor[status] }} />
@@ -37,7 +39,9 @@ function RoadmapCard({ status, title, description, category, upvotes, commentCou
 					<span />
 					<span>{upvotes}</span>
 				</button>
-				<button className="comment-btn">{commentCount}</button>
+				<Link to={`/details/${id}`} className="comment-btn">
+					{commentCount}
+				</Link>
 			</div>
 		</div>
 	);

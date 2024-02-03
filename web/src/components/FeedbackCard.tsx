@@ -1,15 +1,18 @@
 import { Link } from 'react-router-dom';
 import './FeedbackCard.scss';
+import { Status } from './StatusIndicator';
 
 export interface Feedback {
+	id: number;
 	title: string;
 	description: string;
 	category: string;
+	status: Status;
 	upvotes: number;
 	commentCount: number;
 }
 
-function FeedbackCard({ title, description, category, upvotes, commentCount }: Feedback) {
+function FeedbackCard({ id, title, description, category, upvotes, commentCount }: Feedback) {
 	return (
 		<div className="feedback">
 			<button className="upvote">
@@ -21,7 +24,7 @@ function FeedbackCard({ title, description, category, upvotes, commentCount }: F
 				<p>{description}</p>
 				<button className="category-option">{category}</button>
 			</div>
-			<Link to="/details" className="comment-btn">
+			<Link to={`/details/${id}`} className="comment-btn">
 				{commentCount}
 			</Link>
 		</div>

@@ -1,4 +1,4 @@
-import './Comment.scss';
+import './CommentBox.scss';
 
 interface Comment {
 	image: string;
@@ -7,7 +7,7 @@ interface Comment {
 	content: string;
 }
 
-function Comment({ image, name, username, content }: Comment) {
+function CommentBox({ image, name, username, content }: Comment) {
 	return (
 		<div className="comment">
 			<img src={image} alt={name} />
@@ -21,4 +21,4 @@ function Comment({ image, name, username, content }: Comment) {
 	);
 }
 
-export default Comment;
+export default CommentBox;

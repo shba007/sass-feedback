@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import './FeedbackCard.scss';
 
-interface Feedback {
+export interface Feedback {
 	title: string;
 	description: string;
 	category: string;
@@ -20,7 +21,9 @@ function FeedbackCard({ title, description, category, upvotes, commentCount }: F
 				<p>{description}</p>
 				<button className="category-option">{category}</button>
 			</div>
-			<button className="comment">{commentCount}</button>
+			<Link to="/details" className="comment-btn">
+				{commentCount}
+			</Link>
 		</div>
 	);
 }

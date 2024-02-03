@@ -6,7 +6,19 @@
 	color: var(--light-white);
 	background-color: var(--secondary-500);
 
-	&.btn-secondary {
+	&.secondary {
 		background-color: var(--primary-500);
+	}
+
+	&.neutral {
+		background-color: var(--dark-500);
+	}
+
+	&.danger {
+		background-color: var(--alert-500);
+
+		&:hover {
+			background-color: #e98888;
+		}
 	}
 }

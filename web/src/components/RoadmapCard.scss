@@ -26,7 +26,8 @@
 		color: var(--dark-600);
 	}
 
-	.action {
+	.action-buttons {
+		flex: 0;
 		display: flex;
 		justify-content: space-between;
 	}

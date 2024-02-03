@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './ActionBar.scss';
 import CTAButton from './CTAButton';
 
@@ -11,11 +12,11 @@ function ActionBar({ page }: { page: 'suggestion' | 'roadmap' }) {
 				</>
 			) : (
 				<>
-					<a>Go Back</a>
+					<Link to="/">Go Back</Link>
 					<h2>Roadmap</h2>
 				</>
 			)}
-			<CTAButton primary={false} label="Add Feedback" />
+			<CTAButton to="/feedback" type="secondary" label="Add Feedback" />
 		</div>
 	);
 }

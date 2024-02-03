@@ -10,6 +10,7 @@
 	--dark-600: #647196;
 	--primary-500: #4661e6;
 	--secondary-500: #ad1fea;
+	--alert-500: #d73737;
 }
 
 /* CSS Reset */
@@ -100,7 +101,7 @@ body {
 	background-color: var(--light-500);
 }
 
-.comment {
+.comment-btn {
 	align-self: center;
 	justify-self: flex-end;
 	font-weight: 700;

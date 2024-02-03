@@ -4,6 +4,7 @@ import ActionBar from '../components/ActionBar';
 
 import './Suggestions.scss';
 import StatusIndicator from '../components/StatusIndicator';
+import { Link } from 'react-router-dom';
 
 function Suggestions() {
 	const tags = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
@@ -24,7 +25,7 @@ function Suggestions() {
 		},
 	] as const;
 
-	const requests = [
+	const feedbacks = [
 		{
 			id: 1,
 			title: 'Add tags for solutions',
@@ -346,7 +347,7 @@ function Suggestions() {
 				</div>
 				<div className="roadmap-board">
 					<h2>Roadmap</h2>
-					<a>View</a>
+					<Link to="/roadmap">View</Link>
 					{status.map(({ type, count }) => (
 						<StatusIndicator key={type} type={type} count={count} />
 					))}
@@ -354,16 +355,16 @@ function Suggestions() {
 			</aside>
 			<section>
 				<ActionBar page="suggestion" />
-				{!requests.length ? (
+				{!feedbacks.length ? (
 					<div className="empty-state">
 						<h1>There is no feedback yet.</h1>
 						<p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
 						<button className="add-feedback-btn">Add Feedback</button>
 					</div>
 				) : (
-					<div className="requests">
-						{requests.map(({ title, description, category, upvotes, comments }) => (
-							<FeedbackCard title={title} description={description} category={category} upvotes={upvotes} commentCount={comments?.length ?? 0} />
+					<div className="feedbacks">
+						{feedbacks.map(({ id, title, description, category, upvotes, comments }) => (
+							<FeedbackCard key={id} title={title} description={description} category={category} upvotes={upvotes} commentCount={comments?.length ?? 0} />
 						))}
 					</div>
 				)}

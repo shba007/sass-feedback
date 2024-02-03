@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import CTAButton from '../components/CTAButton';
 import Comment from '../components/Comment';
 import FeedbackCard from '../components/FeedbackCard';
@@ -37,8 +38,8 @@ function FeedbackDetails() {
 	return (
 		<main id="feedback-details">
 			<section className="action-bar">
-				<h2>Go Back</h2>
-				<CTAButton label="Edit Feedback" />
+				<Link to="/">Go Back</Link>
+				<CTAButton to="/feedback?edit=true" label="Edit Feedback" />
 			</section>
 			<FeedbackCard
 				title={feedback.title}

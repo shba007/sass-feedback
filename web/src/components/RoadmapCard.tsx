@@ -1,7 +1,7 @@
 import './RoadmapCard.scss';
 import StatusIndicator, { Status } from './StatusIndicator';
 
-interface RoadmapCard {
+export interface RoadmapItem {
 	status: Status;
 	title: string;
 	description: string;
@@ -24,7 +24,7 @@ const columStart = {
 	suggestion: 4,
 };
 
-function RoadmapCard({ status, title, description, category, upvotes, commentCount }: RoadmapCard) {
+function RoadmapCard({ status, title, description, category, upvotes, commentCount }: RoadmapItem) {
 	return (
 		<div className="card" style={{ gridColumnStart: columStart[status] }}>
 			<div className="bar" style={{ backgroundColor: statusColor[status] }} />
@@ -32,12 +32,12 @@ function RoadmapCard({ status, title, description, category, upvotes, commentCou
 			<h1>{title}</h1>
 			<p>{description}</p>
 			<button className="category-option">{category}</button>
-			<div className="action">
+			<div className="action-buttons">
 				<button className="upvote">
 					<span />
 					<span>{upvotes}</span>
 				</button>
-				<button className="comment">{commentCount}</button>
+				<button className="comment-btn">{commentCount}</button>
 			</div>
 		</div>
 	);

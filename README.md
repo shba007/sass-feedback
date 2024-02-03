@@ -24,5 +24,6 @@ Users should be able to:
 - Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
 
 ### Steps
-- Write down the detailed steps here
+- run the server.setup.sh file using bash
+- run the web.setup.sh file using bash
 

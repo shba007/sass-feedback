@@ -29,7 +29,7 @@ router.get('/:feedbackId', (req, res: Response<Comment[] | Error>) => {
 })
 
 // Add a comment to a feedback
-router.post("/:feedbackId", (req, res: Response<Comment | Error>) => {
+router.post("/:feedbackId", (req, res: Response<Comment[] | Error>) => {
 	const data = req.app.locals.data as Data[];
 
 	const { feedbackId } = req.params
@@ -41,7 +41,7 @@ router.post("/:feedbackId", (req, res: Response<Comment | Error>) => {
 		return
 	}
 
-	res.status(201).json(data[feedbackIndex].comments)
+	res.status(201).json(data[feedbackIndex].comments as Comment[])
 })
 
 // Reply to a comment

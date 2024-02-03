@@ -5,9 +5,9 @@
 	--light-white: #ffffff;
 	--light-400: #f7f8fd;
 	--light-500: #f2f4ff;
-	--dark-300: #3a4374;
 	--dark-400: #373f68;
-	--dark-500: #647196;
+	--dark-500: #3a4374;
+	--dark-600: #647196;
 	--primary-500: #4661e6;
 	--secondary-500: #ad1fea;
 }
@@ -49,6 +49,14 @@ h6 {
 	line-height: inherit;
 }
 
+input,
+textarea {
+	outline: none;
+	border: none;
+	resize: none;
+	font-family: inherit;
+}
+
 body {
 	position: relative;
 	padding: 0.5rem;
@@ -84,7 +92,7 @@ body {
 .upvote {
 	width: fit-content;
 	height: fit-content;
-	color: var(--dark-300);
+	color: var(--dark-500);
 	font-size: 13px;
 	font-weight: 700;
 	padding: 0.5rem;
@@ -96,14 +104,5 @@ body {
 	align-self: center;
 	justify-self: flex-end;
 	font-weight: 700;
-	color: var(--dark-300);
-}
-
-.add-feedback-btn {
-	border-radius: 10px;
-	padding: 0.75rem 1.5rem;
-	font-size: 14px;
-	font-weight: 700;
-	color: var(--light-white);
-	background-color: var(--secondary-500);
+	color: var(--dark-500);
 }

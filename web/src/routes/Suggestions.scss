@@ -55,7 +55,7 @@ main#suggestion {
 			grid-auto-flow: row;
 			gap: 8px;
 			padding: 1.5rem;
-			color: var(--dark-500);
+			color: var(--dark-600);
 			background-color: var(--light-white);
 
 			h2 {
@@ -95,13 +95,13 @@ main#suggestion {
 				margin: 3.375rem 0 1rem 0;
 				font-size: 24px;
 				font-weight: 700;
-				color: var(--dark-300);
+				color: var(--dark-500);
 			}
 			p {
 				margin: 1rem 0 3rem 0;
 				max-width: 25.625rem;
 				text-align: center;
-				color: var(--dark-500);
+				color: var(--dark-600);
 			}
 		}
 

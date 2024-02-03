@@ -1,4 +1,4 @@
-import './Feedback.scss';
+import './FeedbackCard.scss';
 
 interface Feedback {
 	title: string;
@@ -8,7 +8,7 @@ interface Feedback {
 	commentCount: number;
 }
 
-function Feedback({ title, description, category, upvotes, commentCount }: Feedback) {
+function FeedbackCard({ title, description, category, upvotes, commentCount }: Feedback) {
 	return (
 		<div className="feedback">
 			<button className="upvote">
@@ -25,4 +25,4 @@ function Feedback({ title, description, category, upvotes, commentCount }: Feedb
 	);
 }
 
-export default Feedback;
+export default FeedbackCard;

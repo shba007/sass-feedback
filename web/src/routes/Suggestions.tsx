@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Feedback from '../components/Feedback';
+import FeedbackCard from '../components/FeedbackCard';
 import ActionBar from '../components/ActionBar';
 
 import './Suggestions.scss';
@@ -363,7 +363,7 @@ function Suggestions() {
 				) : (
 					<div className="requests">
 						{requests.map(({ title, description, category, upvotes, comments }) => (
-							<Feedback title={title} description={description} category={category} upvotes={upvotes} commentCount={comments?.length ?? 0} />
+							<FeedbackCard title={title} description={description} category={category} upvotes={upvotes} commentCount={comments?.length ?? 0} />
 						))}
 					</div>
 				)}

@@ -1,4 +1,5 @@
 import './ActionBar.scss';
+import CTAButton from './CTAButton';
 
 function ActionBar({ page }: { page: 'suggestion' | 'roadmap' }) {
 	return (
@@ -14,7 +15,7 @@ function ActionBar({ page }: { page: 'suggestion' | 'roadmap' }) {
 					<h2>Roadmap</h2>
 				</>
 			)}
-			<button className="add-feedback-btn">Add Feedback</button>
+			<CTAButton primary={false} label="Add Feedback" />
 		</div>
 	);
 }

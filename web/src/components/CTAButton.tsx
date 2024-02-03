@@ -16,6 +16,7 @@ function CTAButton({
 }) {
 	return to === undefined ? (
 		<button className={`cta-button ${type}`} onClick={(e) => onClickHandler && onClickHandler(e)}>
+			<span>{icon}</span>
 			{label}
 		</button>
 	) : (

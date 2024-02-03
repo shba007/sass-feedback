@@ -9,8 +9,10 @@ function TextField({ inline = true, name, placeholder = '', value }: { inline?: 
 	}
 
 	return inline ? (
+		// @ts-ignore
 		<input name={name} className="text-field" placeholder={placeholder} value={inputValue} onInput={(e) => onInput(e.target.value)} />
 	) : (
+		// @ts-ignore
 		<textarea name={name} className="text-field" placeholder={placeholder} value={inputValue} onInput={(e) => onInput(e.target.value)} />
 	);
 }

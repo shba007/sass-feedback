@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FeedbackCard, { Feedback } from '../components/FeedbackCard';
 import ActionBar from '../components/ActionBar';
 

@@ -8,6 +8,7 @@
   - [Steps](#steps)
 
 ## Overview
+![Suggestion Page](previews/suggestion.jpg)
 
 ### The challenge
 

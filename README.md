@@ -27,4 +27,5 @@ Users should be able to:
 ### Steps
 - run the server.setup.sh file using bash
 - run the web.setup.sh file using bash
+- create .env file for both server and web using .env.example as template
 

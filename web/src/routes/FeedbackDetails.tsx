@@ -22,6 +22,9 @@ interface FeedbackDetails extends Omit<Feedback, 'commentCount'> {
 	comments: Comment[];
 }
 
+// @ts-ignore
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function FeedbackDetails() {
 	const { id } = useParams();
 
@@ -29,7 +32,7 @@ function FeedbackDetails() {
 		queryFn: async () => {
 			if (id == undefined) return;
 
-			const { data } = await axios.get(`http://localhost:3000/feedback/${id}`);
+			const { data } = await axios.get(`${apiUrl}/feedback/${id}`);
 			return data as FeedbackDetails;
 		},
 	});

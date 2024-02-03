@@ -8,13 +8,16 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
+// @ts-ignore
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function Suggestions() {
 	const categories = ['All', 'UI', 'UX', 'Enhancement', 'Bug', 'Feature'];
 	const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
 
 	const { data: feedbacks } = useQuery({
 		queryFn: async () => {
-			const { data } = await axios.get<Feedback[]>('http://localhost:3000/feedback?status=suggestion');
+			const { data } = await axios.get<Feedback[]>(`${apiUrl}/feedback?status=suggestion`);
 			return data;
 		},
 		initialData: [],
@@ -22,7 +25,7 @@ function Suggestions() {
 	const { data: status } = useQuery({
 		queryKey: ['feedback/info'],
 		queryFn: async () => {
-			const { data } = await axios.get('http://localhost:3000/feedback/info');
+			const { data } = await axios.get(`${apiUrl}/feedback/info`);
 			return data as { suggestion: number; planned: number; 'in-progress': number; live: number };
 		},
 		initialData: {

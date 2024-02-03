@@ -7,6 +7,9 @@ import RoadmapCard from '../components/RoadmapCard';
 import { Feedback } from '../components/FeedbackCard';
 import { useState, useEffect } from 'react';
 
+// @ts-ignore
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function Roadmap() {
 	const headings = [
 		{
@@ -28,7 +31,7 @@ function Roadmap() {
 
 	const { data: roadmapItems } = useQuery({
 		queryFn: async () => {
-			const { data } = await axios.get('http://localhost:3000/feedback');
+			const { data } = await axios.get(`${apiUrl}/feedback`);
 
 			return data as Feedback[];
 		},

@@ -7,6 +7,9 @@ import axios from 'axios';
 import { useMutation, useQuery } from 'react-query';
 import { FormEvent } from 'react';
 
+// @ts-ignore
+const apiUrl = import.meta.env.VITE_API_URL;
+
 function Feedback() {
 	const navigate = useNavigate();
 	const { id } = useParams();
@@ -16,16 +19,14 @@ function Feedback() {
 		queryFn: async () => {
 			if (!isEdit) return;
 
-			const { data } = await axios.get(`http://localhost:3000/feedback/${id}`);
+			const { data } = await axios.get(`${apiUrl}/feedback/${id}`);
 			return data as FeedbackType;
 		},
 	});
 
 	const mutation = useMutation({
 		mutationFn: async (formData) => {
-			const { data } = await (!isEdit
-				? axios.post(`http://localhost:3000/feedback`, formData)
-				: axios.put(`http://localhost:3000/feedback/${id}`, formData));
+			const { data } = await (!isEdit ? axios.post(`${apiUrl}/feedback`, formData) : axios.put(`${apiUrl}/feedback/${id}`, formData));
 			return data as FeedbackType;
 		},
 	});

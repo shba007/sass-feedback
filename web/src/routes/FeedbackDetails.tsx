@@ -57,7 +57,7 @@ function FeedbackDetails() {
 				/>
 			)}
 			<section className="comments">
-				<h3>{feedback ? feedback.comments.length : 0} Comments</h3>
+				<h3>{feedback ? feedback.comments?.length : 0} Comments</h3>
 				{feedback &&
 					feedback.comments?.map(({ id, user, content }) => (
 						<CommentBox key={id} image={user.image} name={user.name} username={user.username} content={content} />

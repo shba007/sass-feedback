@@ -29,7 +29,7 @@ function Feedback() {
 
 	const mutation = useMutation({
 		mutationFn: async (formData) => {
-			const { data } = await (!isEdit ? axios.post(`${apiUrl}/feedback`, formData) : axios.put(`${apiUrl}/feedback/${id}`, formData));
+			const { data } = await (isEdit ? axios.put(`${apiUrl}/feedback/${id}`, formData) : axios.post(`${apiUrl}/feedback`, formData));
 			return data as FeedbackType;
 		},
 	});
@@ -45,16 +45,12 @@ function Feedback() {
 
 	function onSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-
 		const formData: any = {};
 
 		const data = new FormData(event.currentTarget);
-		for (let [key, value] of data.entries()) {
-			formData[key.split('-')[1]] = value;
-		}
-		console.log(data);
-		mutation.mutate(formData);
+		for (let [key, value] of data.entries()) formData[key.split('-')[1]] = value;
 
+		mutation.mutate(formData);
 		navigate('/');
 	}
 
@@ -94,7 +90,7 @@ function Feedback() {
 				<div className="buttons">
 					{isEdit && <AppButton onClick={remove.mutate} type="danger" label="Delete" />}
 					<AppButton to="/" type="neutral" label="Cancel" />
-					<AppButton type="primary" label="Add Feedback" />
+					<AppButton type="primary" label={!isEdit ? 'Save Changes' : 'Add Feedback'} />
 				</div>
 			</form>
 		</main>

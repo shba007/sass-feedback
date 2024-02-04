@@ -113,6 +113,13 @@ main#suggestion {
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+			background-color: var(--light-white);
+			padding: 6rem;
+			border-radius: 10px;
+
+			img {
+				width: 128px;
+			}
 
 			h1 {
 				margin: 3.375rem 0 1rem 0;

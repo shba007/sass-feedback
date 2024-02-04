@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import AppButton from '../components/AppButton';
+import ImageNotFound from '../assets/not-found.png';
 
 // @ts-ignore
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -61,6 +62,7 @@ function Suggestions() {
 				<ActionBar page="suggestion" suggestionCount={status!.suggestion} />
 				{!feedbacks || !feedbacks?.length ? (
 					<div className="empty-state">
+						<img src={ImageNotFound} alt="not found" />
 						<h1>There is no feedback yet.</h1>
 						<p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
 						<AppButton label="Add Feedback" icon="plus" />

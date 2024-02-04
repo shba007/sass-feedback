@@ -6,8 +6,15 @@
 	background-color: var(--light-white);
 	max-width: 825px;
 
+	&:hover {
+		.content > h1 {
+			color: var(--primary-500);
+		}
+	}
+
 	.content {
 		flex: 1;
+
 		h1 {
 			font-size: 18px;
 			font-weight: 700;

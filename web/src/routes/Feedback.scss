@@ -6,8 +6,12 @@ main#feedback {
 	height: 100vh;
 
 	.action-bar {
-		background: transparent;
+		align-items: flex-center;
+		gap: 8px;
 		margin-bottom: 3rem;
+		padding-left: 0;
+		padding-right: 0;
+		background: transparent;
 
 		a {
 			color: var(--dark-600);
@@ -23,9 +27,11 @@ main#feedback {
 		padding: 5rem 2.5rem;
 		background-color: var(--light-white);
 
-		.logo {
+		.symbol {
 			position: absolute;
-			// top: -50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			transform: translateY(-50%);
 			top: 0;
 			width: 56px;

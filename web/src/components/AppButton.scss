@@ -1,4 +1,7 @@
-.cta-button {
+.app-button {
+	display: flex;
+	gap: 4px;
+	align-items: center;
 	border-radius: 10px;
 	padding: 0.75rem 1.5rem;
 	font-size: 14px;
@@ -7,12 +10,24 @@
 	background-color: var(--secondary-500);
 	white-space: nowrap;
 
+	&:hover {
+		background-color: #c75af6;
+	}
+
 	&.secondary {
 		background-color: var(--primary-500);
+
+		&:hover {
+			background-color: #7c91f9;
+		}
 	}
 
 	&.neutral {
 		background-color: var(--dark-500);
+
+		&:hover {
+			background-color: #656ea3;
+		}
 	}
 
 	&.danger {

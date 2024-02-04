@@ -20,11 +20,24 @@ $large: 1024px;
 		letter-spacing: 1px;
 
 		@media screen and (min-width: $medium) {
-			display: block;
+			display: flex;
+			align-items: flex-end;
+			gap: 8px;
 		}
 	}
 
-	.cta-button {
+	h2 {
+		font-size: 24px;
+		font-weight: 700;
+	}
+
+	div {
+		.app-icon {
+			margin-right: 8px;
+		}
+	}
+
+	.app-button {
 		margin: 0 0 0 auto;
 	}
 }

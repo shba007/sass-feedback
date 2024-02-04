@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import './RoadmapCard.scss';
 import StatusIndicator, { Status } from './StatusIndicator';
 import { useEffect, useState } from 'react';
+import AppIntElem from './AppIntElem';
+import AppIcon from './AppIcon';
 
 export interface RoadmapItem {
 	id: number;
@@ -44,22 +46,24 @@ function RoadmapCard({ id, status, title, description, category, upvotes, commen
 	});
 
 	return (
-		<div className="card" style={{ gridColumnStart: screenSm ? 1 : columStart[status], gridColumnEnd: screenSm ? 4 : columStart[status] + 1 }}>
+		<Link
+			to={`/details/${id}`}
+			className="card"
+			style={{ gridColumnStart: screenSm ? 1 : columStart[status], gridColumnEnd: screenSm ? 4 : columStart[status] + 1 }}
+		>
 			<div className="bar" style={{ backgroundColor: statusColor[status] }} />
 			<StatusIndicator type={status} />
 			<h1>{title}</h1>
 			<p>{description}</p>
 			<button className="category-option">{category}</button>
 			<div className="action-buttons">
-				<button className="upvote">
-					<span />
-					<span>{upvotes}</span>
-				</button>
-				<Link to={`/details/${id}`} className="comment-btn">
-					{commentCount}
-				</Link>
+				<AppIntElem label={upvotes} />
+				<span className="comment-btn">
+					<AppIcon name="comment" size={20} color="#CDD2EE" />
+					<span>{commentCount}</span>
+				</span>
 			</div>
-		</div>
+		</Link>
 	);
 }
 

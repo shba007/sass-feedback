@@ -5,6 +5,7 @@
 	--light-white: #ffffff;
 	--light-400: #f7f8fd;
 	--light-500: #f2f4ff;
+	--dark-black: #000000;
 	--dark-400: #373f68;
 	--dark-500: #3a4374;
 	--dark-600: #647196;
@@ -80,8 +81,7 @@ body {
 	background-color: var(--light-500);
 
 	&:hover {
-		color: var(--light-white);
-		background-color: var(--primary-500);
+		background-color: #cfd7ff;
 	}
 
 	&.active {
@@ -90,20 +90,13 @@ body {
 	}
 }
 
-.upvote {
-	width: fit-content;
-	height: fit-content;
-	color: var(--dark-500);
-	font-size: 13px;
-	font-weight: 700;
-	padding: 0.5rem;
-	border-radius: 10px;
-	background-color: var(--light-500);
-}
-
 .comment-btn {
 	align-self: center;
 	justify-self: flex-end;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
 	font-weight: 700;
 	color: var(--dark-500);
 }

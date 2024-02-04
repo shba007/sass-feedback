@@ -7,6 +7,7 @@ import StatusIndicator, { Status } from '../components/StatusIndicator';
 import { Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import AppButton from '../components/AppButton';
 
 // @ts-ignore
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -62,7 +63,7 @@ function Suggestions() {
 					<div className="empty-state">
 						<h1>There is no feedback yet.</h1>
 						<p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
-						<button className="add-feedback-btn">Add Feedback</button>
+						<AppButton label="Add Feedback" icon="plus" />
 					</div>
 				) : (
 					<div className="feedbacks">

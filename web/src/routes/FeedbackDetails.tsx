@@ -2,11 +2,12 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-import CTAButton from '../components/CTAButton';
+import AppButton from '../components/AppButton';
 import CommentBox from '../components/CommentBox';
 import FeedbackCard, { Feedback } from '../components/FeedbackCard';
 import TextField from '../components/Form/TextField';
 import './FeedbackDetails.scss';
+import AppIcon from '../components/AppIcon';
 
 interface Comment {
 	id: number;
@@ -40,8 +41,9 @@ function FeedbackDetails() {
 	return (
 		<main id="feedback-details">
 			<section className="action-bar">
+				<AppIcon name="chevron" size={12} color="#4661E6" />
 				<Link to="/">Go Back</Link>
-				<CTAButton to={`/feedback/${id}`} label="Edit Feedback" />
+				<AppButton to={`/feedback/${id}`} label="Edit Feedback" />
 			</section>
 			{feedback && (
 				<FeedbackCard
@@ -66,7 +68,7 @@ function FeedbackDetails() {
 				<TextField name="comment" inline={false} placeholder="Type your comment here" />
 				<div>
 					<span>250 Characters left</span>
-					<button>Post Comment</button>
+					<AppButton label="Post Comment" />
 				</div>
 			</section>
 		</main>

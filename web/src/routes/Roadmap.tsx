@@ -15,19 +15,33 @@ function Roadmap() {
 		{
 			title: 'Planned',
 			details: 'Ideas prioritized for research',
-			count: 2,
+			count: 0,
 		},
 		{
 			title: 'In-Progress',
 			details: 'Currently being developed',
-			count: 3,
+			count: 0,
 		},
 		{
 			title: 'Live',
 			details: 'Released features',
-			count: 1,
+			count: 0,
 		},
 	];
+
+	const { data: status } = useQuery({
+		queryKey: ['feedback/info'],
+		queryFn: async () => {
+			const { data } = await axios.get(`${apiUrl}/feedback/info`);
+			return data as { suggestion: number; planned: number; 'in-progress': number; live: number };
+		},
+		initialData: {
+			suggestion: 0,
+			planned: 0,
+			'in-progress': 0,
+			live: 0,
+		},
+	});
 
 	const { data: roadmapItems } = useQuery({
 		queryFn: async () => {
@@ -56,10 +70,11 @@ function Roadmap() {
 		<main id="roadmap">
 			<ActionBar page="roadmap" />
 			<div className="board">
-				{headings.map(({ title, details, count }, index) => (
+				{headings.map(({ title, details }, index) => (
 					<div key={title} className="head" style={{ gridColumnStart: index + 1 }}>
 						<h2>
-							{title} ({count})
+							{/* @ts-ignore */}
+							{title} ({status[title.toLowerCase()]})
 						</h2>
 						{!screenSm && <span>{details}</span>}
 					</div>
